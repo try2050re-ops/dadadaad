@@ -13,6 +13,9 @@ interface Customer {
   line_type: number;
   charging_date: string | null;
   renewal_date: string | null;
+  arrival_time: string | null;
+  provider: string | null;
+  ownership: string | null;
   payment_status: string;
   monthly_price: number | null;
   renewal_status: string;
@@ -179,6 +182,9 @@ export const CustomerTable = ({ onAddCustomer, onAddBulkCustomers, onEditCustome
               <TableHead className="text-right">رقم الموبايل</TableHead>
               <TableHead className="text-right">نوع الخط</TableHead>
               <TableHead className="text-right">تاريخ الشحن</TableHead>
+              <TableHead className="text-right">وقت الوصول</TableHead>
+              <TableHead className="text-right">مزود الخدمة</TableHead>
+              <TableHead className="text-right">ملكية الخط</TableHead>
               <TableHead className="text-right">تاريخ التجديد</TableHead>
               <TableHead className="text-right">حالة الدفع</TableHead>
               <TableHead className="text-right">السعر الشهري</TableHead>
@@ -209,6 +215,34 @@ export const CustomerTable = ({ onAddCustomer, onAddBulkCustomers, onEditCustome
                     <Calendar className="h-4 w-4 text-muted-foreground" />
                     {formatDate(customer.charging_date)}
                   </div>
+                </TableCell>
+                <TableCell>
+                  {customer.arrival_time ? (
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
+                      {customer.arrival_time}
+                    </div>
+                  ) : (
+                    'غير محدد'
+                  )}
+                </TableCell>
+                <TableCell>
+                  {customer.provider ? (
+                    <Badge variant="outline" className="capitalize">
+                      {customer.provider}
+                    </Badge>
+                  ) : (
+                    'غير محدد'
+                  )}
+                </TableCell>
+                <TableCell>
+                  {customer.ownership ? (
+                    <Badge variant="secondary" className="capitalize">
+                      {customer.ownership}
+                    </Badge>
+                  ) : (
+                    'غير محدد'
+                  )}
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">

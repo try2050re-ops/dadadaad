@@ -12,6 +12,9 @@ interface Customer {
   line_type: number;
   charging_date: string | null;
   renewal_date: string | null;
+  arrival_time: string | null;
+  provider: string | null;
+  ownership: string | null;
   payment_status: string;
   monthly_price: number | null;
   renewal_status: string;
@@ -158,6 +161,24 @@ export const UserDashboard = ({ userType, username }: UserDashboardProps) => {
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="font-medium">تاريخ الشحن:</span>
                   <span className="text-purple-600 font-semibold">{formatDate(customer.charging_date)}</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-medium">وقت الوصول:</span>
+                  <span className="text-indigo-600 font-semibold">{customer.arrival_time || 'غير محدد'}</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <Wifi className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-medium">مزود الخدمة:</span>
+                  <Badge variant="outline" className="bg-blue-100 text-blue-700 border-blue-300 capitalize">{customer.provider || 'غير محدد'}</Badge>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-medium">ملكية الخط:</span>
+                  <Badge variant="secondary" className="capitalize">{customer.ownership || 'غير محدد'}</Badge>
                 </div>
                 
                 <div className="flex items-center gap-2">

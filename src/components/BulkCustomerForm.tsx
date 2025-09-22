@@ -14,6 +14,9 @@ interface CustomerData {
   mobile_number: string;
   line_type: string;
   charging_date: string;
+  arrival_time: string;
+  provider: string;
+  ownership: string;
   payment_status: string;
   monthly_price: string;
   renewal_status: string;
@@ -31,6 +34,9 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
       mobile_number: '',
       line_type: '40',
       charging_date: '',
+      arrival_time: '',
+      provider: 'orange',
+      ownership: 'nader',
       payment_status: 'لم يدفع',
       monthly_price: '',
       renewal_status: 'لم يتم',
@@ -46,6 +52,9 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
         mobile_number: '',
         line_type: '40',
         charging_date: '',
+        arrival_time: '',
+        provider: 'orange',
+        ownership: 'nader',
         payment_status: 'لم يدفع',
         monthly_price: '',
         renewal_status: 'لم يتم',
@@ -91,6 +100,9 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
         mobile_number: customer.mobile_number ? parseInt(customer.mobile_number) : null,
         line_type: customer.line_type ? parseInt(customer.line_type) : 40,
         charging_date: customer.charging_date || null,
+        arrival_time: customer.arrival_time || null,
+        provider: customer.provider,
+        ownership: customer.ownership,
         payment_status: customer.payment_status,
         monthly_price: customer.monthly_price ? parseFloat(customer.monthly_price) : null,
         renewal_status: customer.renewal_status,
@@ -129,6 +141,9 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
         mobile_number: '01234567890',
         line_type: '40',
         charging_date: '2025-01-01',
+        arrival_time: '10:30',
+        provider: 'orange',
+        ownership: 'nader',
         payment_status: 'دفع',
         monthly_price: '150',
         renewal_status: 'تم',
@@ -138,6 +153,9 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
         mobile_number: '01234567891',
         line_type: '60',
         charging_date: '2025-01-02',
+        arrival_time: '14:15',
+        provider: 'etisalat',
+        ownership: 'amer',
         payment_status: 'لم يدفع',
         monthly_price: '200',
         renewal_status: 'لم يتم',
@@ -147,6 +165,9 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
         mobile_number: '01234567892',
         line_type: '50',
         charging_date: '2025-01-03',
+        arrival_time: '16:45',
+        provider: 'we',
+        ownership: 'nader',
         payment_status: 'دفع',
         monthly_price: '175',
         renewal_status: 'تم',
@@ -262,6 +283,92 @@ export const BulkCustomerForm = ({ onSave, onCancel }: BulkCustomerFormProps) =>
                             value={customer.charging_date}
                             onChange={(e) => updateCustomer(index, 'charging_date', e.target.value)}
                           />
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`arrival_time_${index}`}>وقت وصول الخط</Label>
+                          <Input
+                            id={`arrival_time_${index}`}
+                            type="time"
+                            value={customer.arrival_time}
+                            onChange={(e) => updateCustomer(index, 'arrival_time', e.target.value)}
+                          />
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`provider_${index}`}>مزود الخدمة</Label>
+                          <Select 
+                            value={customer.provider} 
+                            onValueChange={(value) => updateCustomer(index, 'provider', value)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="اختر مزود الخدمة" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="orange">Orange</SelectItem>
+                              <SelectItem value="etisalat">Etisalat</SelectItem>
+                              <SelectItem value="we">WE</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`ownership_${index}`}>ملكية الخط</Label>
+                          <Select 
+                            value={customer.ownership} 
+                            onValueChange={(value) => updateCustomer(index, 'ownership', value)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="اختر مالك الخط" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="nader">Nader</SelectItem>
+                              <SelectItem value="amer">Amer</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`arrival_time_${index}`}>وقت وصول الخط</Label>
+                          <Input
+                            id={`arrival_time_${index}`}
+                            type="time"
+                            value={customer.arrival_time}
+                            onChange={(e) => updateCustomer(index, 'arrival_time', e.target.value)}
+                          />
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`provider_${index}`}>مزود الخدمة</Label>
+                          <Select 
+                            value={customer.provider} 
+                            onValueChange={(value) => updateCustomer(index, 'provider', value)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="اختر مزود الخدمة" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="orange">Orange</SelectItem>
+                              <SelectItem value="etisalat">Etisalat</SelectItem>
+                              <SelectItem value="we">WE</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`ownership_${index}`}>ملكية الخط</Label>
+                          <Select 
+                            value={customer.ownership} 
+                            onValueChange={(value) => updateCustomer(index, 'ownership', value)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="اختر مالك الخط" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="nader">Nader</SelectItem>
+                              <SelectItem value="amer">Amer</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </div>
 
                         <div className="space-y-2">

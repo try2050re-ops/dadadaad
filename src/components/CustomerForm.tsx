@@ -14,6 +14,9 @@ interface Customer {
   mobile_number: number;
   line_type: number;
   charging_date: string | null;
+  arrival_time: string | null;
+  provider: string | null;
+  ownership: string | null;
   payment_status: string;
   monthly_price: number | null;
   renewal_status: string;
@@ -31,6 +34,9 @@ export const CustomerForm = ({ customer, onSave, onCancel }: CustomerFormProps) 
     mobile_number: customer?.mobile_number ? String(customer.mobile_number) : '',
     line_type: customer?.line_type ? String(customer.line_type) : '40',
     charging_date: customer?.charging_date || '',
+    arrival_time: customer?.arrival_time || '',
+    provider: customer?.provider || 'orange',
+    ownership: customer?.ownership || 'nader',
     payment_status: customer?.payment_status || 'لم يدفع',
     monthly_price: customer?.monthly_price ? String(customer.monthly_price) : '',
     renewal_status: customer?.renewal_status || 'لم يتم',
@@ -48,6 +54,9 @@ export const CustomerForm = ({ customer, onSave, onCancel }: CustomerFormProps) 
         mobile_number: formData.mobile_number ? parseInt(formData.mobile_number) : null,
         line_type: formData.line_type ? parseInt(formData.line_type) : null,
         charging_date: formData.charging_date || null,
+        arrival_time: formData.arrival_time || null,
+        provider: formData.provider,
+        ownership: formData.ownership,
         payment_status: formData.payment_status,
         monthly_price: formData.monthly_price ? parseFloat(formData.monthly_price) : null,
         renewal_status: formData.renewal_status,
@@ -156,6 +165,49 @@ export const CustomerForm = ({ customer, onSave, onCancel }: CustomerFormProps) 
                   value={formData.charging_date || ''}
                   onChange={(e) => setFormData({ ...formData, charging_date: e.target.value })}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="arrival_time">وقت وصول الخط</Label>
+                <Input
+                  id="arrival_time"
+                  type="time"
+                  value={formData.arrival_time || ''}
+                  onChange={(e) => setFormData({ ...formData, arrival_time: e.target.value })}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="provider">مزود الخدمة</Label>
+                <Select 
+                  value={formData.provider} 
+                  onValueChange={(value) => setFormData({ ...formData, provider: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="اختر مزود الخدمة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="orange">Orange</SelectItem>
+                    <SelectItem value="etisalat">Etisalat</SelectItem>
+                    <SelectItem value="we">WE</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="ownership">ملكية الخط</Label>
+                <Select 
+                  value={formData.ownership} 
+                  onValueChange={(value) => setFormData({ ...formData, ownership: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="اختر مالك الخط" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nader">Nader</SelectItem>
+                    <SelectItem value="amer">Amer</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">

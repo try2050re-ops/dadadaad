@@ -21,6 +21,9 @@ export type Database = {
           mobile_number: number
           line_type: number
           charging_date: string | null
+         arrival_time: string | null
+         provider: string | null
+         ownership: string | null
           payment_status: string
           monthly_price: number | null
           renewal_status: string
@@ -33,6 +36,9 @@ export type Database = {
           mobile_number: number
           line_type?: number
           charging_date?: string | null
+         arrival_time?: string | null
+         provider?: string | null
+         ownership?: string | null
           payment_status?: string
           monthly_price?: number | null
           renewal_status?: string
@@ -45,6 +51,9 @@ export type Database = {
           mobile_number?: number
           line_type?: number
           charging_date?: string | null
+         arrival_time?: string | null
+         provider?: string | null
+         ownership?: string | null
           payment_status?: string
           monthly_price?: number | null
           renewal_status?: string

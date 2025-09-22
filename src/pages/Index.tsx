@@ -18,7 +18,10 @@ const Index = () => {
     setIsLoggedIn(true);
     setUserType(type);
     setUsername(user);
-    startSessionTimer();
+    // Only start session timer for non-admin users
+    if (type !== "admin") {
+      startSessionTimer();
+    }
   };
 
   const handleLogout = () => {
@@ -45,7 +48,7 @@ const Index = () => {
 
   // Reset session timer on user activity
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && userType !== "admin") {
       const resetTimer = () => {
         startSessionTimer();
       };
@@ -61,7 +64,7 @@ const Index = () => {
         });
       };
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, userType]);
 
   // Cleanup timeout on unmount
   useEffect(() => {
